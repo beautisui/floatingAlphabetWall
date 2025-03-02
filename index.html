@@ -1,8 +1,8 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Floating Alphabet</title>
+  <title>Alphabet Wall</title>
   <style>
     * {
       margin: 0;
@@ -29,7 +29,7 @@
       font-size: 70px;
       font-weight: bold;
       color: hsla(0, 0%, 0%, var(--opacity));
-      transition: transform 1.5s ease-in-out, opacity 1s ease-in-out;
+      transition: all 0.7s ease-in-out;
     }
   </style>
 </head>
@@ -41,8 +41,8 @@
     const randomInt = (limit) => Math.floor(Math.random() * limit);
 
     const randomPosition = () => ({
-      x: randomInt(window.innerWidth - 100),
-      y: randomInt(window.innerHeight - 100)
+      x: randomInt(90),
+      y: randomInt(90)
     });
 
     const createAlphabet = (parent) => {
@@ -59,16 +59,18 @@
       for (let i = 0; i < 40; i++) {
         const alphabet = createAlphabet(parent);
         const pos = randomPosition();
-        alphabet.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+        alphabet.style.left = pos.x + "%";
+        alphabet.style.top = pos.y + "%";
         alphabets.push(alphabet);
       }
 
       setInterval(() => {
         alphabets.forEach(alphabet => {
           const pos = randomPosition();
-          alphabet.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+          alphabet.style.left = pos.x + "%";
+          alphabet.style.top = pos.y + "%";
         });
-      }, 2000);
+      }, 700);
     };
 
     fillWithAlphabets(document.getElementById("box"));
